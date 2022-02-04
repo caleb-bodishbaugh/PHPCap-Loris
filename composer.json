@@ -1,0 +1,17 @@
+{
+    "name": "kbod/php-cap-loris",
+    "description": "PHPCap-powered pipeline between REDCap and Loris",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kbod\\PhpCapLoris\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Caleb Bodishbaugh",
+            "email": "cbb3jn@virginia.edu"
+        }
+    ],
+    "require": {}
+}
