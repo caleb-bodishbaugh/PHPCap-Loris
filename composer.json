@@ -17,6 +17,7 @@
         }
     ],
     "require": {
-        "iu-redcap/phpcap": "^1.2"
+        "iu-redcap/phpcap": "^1.2",
+        "vlucas/phpdotenv": "^5.4"
     }
 }
