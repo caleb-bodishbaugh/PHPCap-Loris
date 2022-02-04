@@ -3,6 +3,9 @@
     "description": "PHPCap-powered pipeline between REDCap and Loris",
     "type": "project",
     "autoload": {
+        "psr-0": {
+            "HelloWorld": "src/"
+        },
         "psr-4": {
             "Kbod\\PhpCapLoris\\": "src/"
         }
@@ -13,5 +16,7 @@
             "email": "cbb3jn@virginia.edu"
         }
     ],
-    "require": {}
+    "require": {
+        "iu-redcap/phpcap": "^1.2"
+    }
 }
