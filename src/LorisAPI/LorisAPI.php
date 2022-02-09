@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace LorisAPI;
 
@@ -10,12 +10,12 @@ class LorisAPI {
     private $password;
     private $token;
 
-    public function __construct($username, $api_url) {
+    public function __construct(string $username, string $api_url) {
         $this->username = $username;
         $this->api_url = $api_url;
     }
 
-    public function set_password($pwd) {
+    public function set_password(string $pwd) {
         $this->password = $pwd;
     }
 
@@ -31,7 +31,7 @@ class LorisAPI {
         $this->token = $token->token;
     }
 
-    public function get_candidate($CandID) {
+    public function get_candidate(string $CandID) {
         $request_uri = $this->api_url . "/candidates/$CandID";
         return get_request($request_uri, $this->token);
     }
@@ -41,7 +41,7 @@ class LorisAPI {
         return get_request($request_uri, $this->token);
     }
 
-    public function get_candidate_visit($CandID, $VisitLabel) { 
+    public function get_candidate_visit(string $CandID, string $VisitLabel) { 
         $request_uri = $this->api_url . "/candidates/$CandID/$VisitLabel";
         return get_request($request_uri, $this->token);
     }
@@ -51,22 +51,22 @@ class LorisAPI {
         return get_request($request_uri, $this->token);
     }
 
-    public function get_project($project_name) {
+    public function get_project(string $project_name) {
         $request_uri = $this->api_url . "/projects/$project_name";
         return get_request($request_uri, $this->token);
     }
 
-    public function get_project_instrument($project_name, $instrument_name) {
+    public function get_project_instrument(string $project_name, string $instrument_name) {
         $request_uri = $this->api_url . "/projects/$project_name/instruments/$instrument_name";
         return get_request($request_uri, $this->token);
     }
 
-    public function get_project_field($project_name, $field_name) {
+    public function get_project_field(string $project_name, string $field_name) {
         $request_uri = $this->api_url . "/projects/$project_name/$field_name";
         return get_request($request_uri, $this->token);
     }
 
-    public function post_candidate($Project, $EDC, $DoB, $Sex, $Site) {
+    public function post_candidate(string $Project, string $EDC, string $DoB, string $Sex, string $Site) {
         $request_uri = $this->api_url . "/candidates";
         $candidate_info = array('Project' => $Project,
                                 'EDC'     => $EDC,
@@ -79,7 +79,7 @@ class LorisAPI {
         return post_request($request_uri, $candidate_json, $this->token);
     }
 
-    public function put_candidate_visitlabel($CandID, $VisitLabel, $Site, $Battery, $Project) {
+    public function put_candidate_visitlabel(string $CandID, string $VisitLabel, string $Site, string $Battery, string $Project) {
         $request_uri = $this->api_url . "/candidates/$CandID/$VisitLabel";
         $meta_info = array('CandID'  => $CandID,
                            'Visit'   => $VisitLabel,
@@ -92,7 +92,7 @@ class LorisAPI {
         return put_request($request_uri, $meta_json, $this->token);
     }
 
-    public function patch_candidate_visitlabel($CandID, $VisitLabel, $Site, $Battery, $Project, $Date, $Status) {
+    public function patch_candidate_visitlabel(string $CandID, string $VisitLabel, string $Site, string $Battery, string $Project, string $Date, string $Status) {
         $request_uri = $this->api_url . "/candidates/$CandID/$VisitLabel";
         $visit_info = array('Date'   => $Date,
                             'Status' => $Status);
@@ -109,7 +109,7 @@ class LorisAPI {
     }
 }
 
-function get_request($request_uri, $token) {
+function get_request(string $request_uri, string $token) {
     try {
         $ch = curl_init();
         curl_setopt_array($ch, [
@@ -127,7 +127,7 @@ function get_request($request_uri, $token) {
     }
 }
 
-function post_request($request_uri, $post_data, $token) {
+function post_request(string $request_uri, string $post_data, string $token) {
     try {
         $ch = curl_init();
         curl_setopt_array($ch, [
@@ -147,7 +147,7 @@ function post_request($request_uri, $post_data, $token) {
     }
 }
 
-function put_request($request_uri, $put_data, $token) {
+function put_request(string $request_uri, string $put_data, string $token) {
     try {
         $ch = curl_init();
         curl_setopt_array($ch, [
@@ -167,7 +167,7 @@ function put_request($request_uri, $put_data, $token) {
     }
 }
 
-function patch_request($request_uri, $patch_data, $token) {
+function patch_request(string $request_uri, string $patch_data, string $token) {
     try {
         $ch = curl_init();
         curl_setopt_array($ch, [
